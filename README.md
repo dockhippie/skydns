@@ -24,7 +24,7 @@ docker exec -ti skydns manage help
 ## Available environment variables
 
 ```bash
-ENV SKYDNS_CA_CERT
+ENV SKYDNS_CA_CERT # As string or filename
 ENV SKYDNS_DISCOVER false
 ENV SKYDNS_DNSSEC
 ENV SKYDNS_DOMAIN skydns.local.
@@ -37,8 +37,8 @@ ENV SKYDNS_RCACHE_TTL 60
 ENV SKYDNS_ROUND_ROBIN true
 ENV SKYDNS_RTIMEOUT 2s
 ENV SKYDNS_SCACHE 10000
-ENV SKYDNS_TLS_KEY
-ENV SKYDNS_TLS_PEM
+ENV SKYDNS_TLS_KEY # As string or filename
+ENV SKYDNS_TLS_PEM # As string or filename
 ENV SKYDNS_VERBOSE false
 ```
 
