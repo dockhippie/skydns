@@ -9,6 +9,7 @@ if manage-running
 then
   echo "Service is already running"
 else
+  trap "manage-stop" SIGTERM
   STARTCMD="/usr/bin/skydns -addr=0.0.0.0:53 -systemd=false"
 
   if [ -n "${SKYDNS_DISCOVER}" ]
