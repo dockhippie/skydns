@@ -1,8 +1,8 @@
 # Skydns
 
-These are docker images for skydns running on an
+These are docker images for [SkyDNS](https://github.com/skynetservices/skydns) running on an
 [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
-The cuurrent container size is ```26.47 MB```
+The current container size is ```51.49 MB```
 
 
 ## Usage
