@@ -1,11 +1,11 @@
 FROM webhippie/alpine:latest
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
-ENV GOPATH /usr
-
 ENV SKYDNS_PATH github.com/skynetservices/skydns
 ENV SKYDNS_REPO https://${SKYDNS_PATH}.git
 ENV SKYDNS_BRANCH master
+
+ENV GOPATH /usr
 
 RUN apk-install build-base git go && \
   git clone -b ${SKYDNS_BRANCH} ${SKYDNS_REPO} ${GOPATH}/src/${SKYDNS_PATH} && \
