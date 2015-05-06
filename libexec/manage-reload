@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# Usage: manage reload
-# Summary: Reload the main process
-# Help: This command is used to reload the main process.
-set -e
-[[ -z $_MANAGE_ROOT ]] && exit 1

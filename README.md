@@ -8,10 +8,7 @@ The cuurrent container size is ```26.47 MB```
 ## Usage
 
 ```
-docker run -ti --name skydns webhippie/skydns:latest bash
-
-# Execute this for further available commands
-docker exec -ti skydns manage help
+docker run -ti --name skydns webhippie/skydns:latest
 ```
 
 
@@ -41,23 +38,6 @@ ENV SKYDNS_SCACHE 10000
 ENV SKYDNS_TLS_KEY # As string or filename
 ENV SKYDNS_TLS_PEM # As string or filename
 ENV SKYDNS_VERBOSE false
-```
-
-
-## Available management commands
-
-```bash
-Usage: manage <command> [<args>]
-
-Some useful manage commands are:
-   bash      Start a shell on container
-   commands  List all available sub commands
-   pid       Return the process id
-   prepare   Prepare environment
-   reload    Reload the main process
-   running   Check if main process is running
-   start     Start the main process
-   stop      Stop the main process
 ```
 
 

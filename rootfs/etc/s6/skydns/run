@@ -1,0 +1,108 @@
+#!/bin/bash
+
+if [ -f ./setup ]
+then
+  ./setup
+fi
+
+STARTCMD="/usr/bin/skydns -addr=0.0.0.0:53 -systemd=false"
+
+if [ -n "${SKYDNS_DISCOVER}" ]
+then
+  STARTCMD="${STARTCMD} -discover=${SKYDNS_DISCOVER}"
+fi
+
+if [ -n "${SKYDNS_DNSSEC}" ]
+then
+  STARTCMD="${STARTCMD} -dnssec=${SKYDNS_DNSSEC}"
+fi
+
+if [ -n "${SKYDNS_DOMAIN}" ]
+then
+  STARTCMD="${STARTCMD} -domain=${SKYDNS_DOMAIN}"
+fi
+
+if [ -n "${SKYDNS_HOSTMASTER}" ]
+then
+  STARTCMD="${STARTCMD} -hostmaster=${SKYDNS_HOSTMASTER}"
+fi
+
+if [ -n "${SKYDNS_LOCAL}" ]
+then
+  STARTCMD="${STARTCMD} -local=${SKYDNS_LOCAL}"
+fi
+
+if [ -n "${SKYDNS_MACHINES}" ]
+then
+  STARTCMD="${STARTCMD} -machines=${SKYDNS_MACHINES}"
+fi
+
+if [ -n "${SKYDNS_NAMESERVERS}" ]
+then
+  STARTCMD="${STARTCMD} -nameservers=${SKYDNS_NAMESERVERS}"
+fi
+
+if [ -n "${SKYDNS_RCACHE}" ]
+then
+  STARTCMD="${STARTCMD} -rcache=${SKYDNS_RCACHE}"
+fi
+
+if [ -n "${SKYDNS_RCACHE_TTL}" ]
+then
+  STARTCMD="${STARTCMD} -rcache-ttl=${SKYDNS_RCACHE_TTL}"
+fi
+
+if [ -n "${SKYDNS_ROUND_ROBIN}" ]
+then
+  STARTCMD="${STARTCMD} -round-robin=${SKYDNS_ROUND_ROBIN}"
+fi
+
+if [ -n "${SKYDNS_RTIMEOUT}" ]
+then
+  STARTCMD="${STARTCMD} -rtimeout=${SKYDNS_RTIMEOUT}"
+fi
+
+if [ -n "${SKYDNS_SCACHE}" ]
+then
+  STARTCMD="${STARTCMD} -scache=${SKYDNS_SCACHE}"
+fi
+
+if [ -n "${SKYDNS_VERBOSE}" ]
+then
+  STARTCMD="${STARTCMD} -verbose=${SKYDNS_VERBOSE}"
+fi
+
+if [ -n "${SKYDNS_CA_CERT}" ]
+then
+  if [ -f "${SKYDNS_CA_CERT}" ]
+  then
+    STARTCMD="${STARTCMD} -ca-cert=${SKYDNS_CA_CERT}"
+  else
+    echo -e "${SKYDNS_CA_CERT}" >| /tmp/ca.crt
+    STARTCMD="${STARTCMD} -ca-cert=/tmp/ca.crt"
+  fi
+fi
+
+if [ -n "${SKYDNS_TLS_PEM}" ]
+then
+  if [ -f "${SKYDNS_TLS_PEM}" ]
+  then
+    STARTCMD="${STARTCMD} -tls-pem=${SKYDNS_TLS_PEM}"
+  else
+    echo -e "${SKYDNS_TLS_PEM}" >| /tmp/etcd.crt
+    STARTCMD="${STARTCMD} -tls-pem=/tmp/etcd.crt"
+  fi
+fi
+
+if [ -n "${SKYDNS_TLS_KEY}" ]
+then
+  if [ -f "${SKYDNS_TLS_KEY}" ]
+  then
+    STARTCMD="${STARTCMD} -tls-key=${SKYDNS_TLS_KEY}"
+  else
+    echo -e "${SKYDNS_TLS_KEY}" >| /tmp/etcd.key
+    STARTCMD="${STARTCMD} -tls-key=/tmp/etcd.key"
+  fi
+fi
+
+exec ${STARTCMD}
