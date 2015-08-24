@@ -1,1 +1,57 @@
 #!/bin/bash
+
+declare -x SKYDNS_MACHINES
+declare -x SKYDNS_CA_CERT
+declare -x SKYDNS_TLS_PEM
+declare -x SKYDNS_TLS_KEY
+declare -x ETCDCTL_COMMAND
+
+if [ -n "${SKYDNS_MACHINES}" ]
+then
+  SKYDNS_MACHINES="http://etcd:2379"
+fi
+
+if [ -z "${ETCDCTL_COMMAND}" ]
+then
+  ETCDCTL_COMMAND="/usr/bin/etcdctl --peers=${SKYDNS_MACHINES}"
+else
+  ETCDCTL_COMMAND="${ETCDCTL_COMMAND} --peers=${SKYDNS_MACHINES}"
+fi
+
+if [ -n "${SKYDNS_CA_CERT}" ]
+then
+  if [ ! -f "${SKYDNS_CA_CERT}" ]
+  then
+    echo -e "${SKYDNS_CA_CERT}" >| /tmp/ca.crt
+    SKYDNS_CA_CERT="/tmp/ca.crt"
+  fi
+
+  ETCDCTL_COMMAND="${ETCDCTL_COMMAND} --ca-file=${SKYDNS_CA_CERT}"
+fi
+
+if [ -n "${SKYDNS_TLS_PEM}" ]
+then
+  if [ ! -f "${SKYDNS_TLS_PEM}" ]
+  then
+    echo -e "${SKYDNS_TLS_PEM}" >| /tmp/etcd.crt
+    SKYDNS_TLS_PEM="/tmp/etcd.crt"
+  fi
+
+  ETCDCTL_COMMAND="${ETCDCTL_COMMAND} --cert-file=${SKYDNS_TLS_PEM}"
+fi
+
+if [ -n "${SKYDNS_TLS_KEY}" ]
+then
+  if [ ! -f "${SKYDNS_TLS_KEY}" ]
+  then
+    echo -e "${SKYDNS_TLS_KEY}" >| /tmp/etcd.key
+    SKYDNS_TLS_KEY="/tmp/etcd.key"
+  fi
+
+  ETCDCTL_COMMAND="${ETCDCTL_COMMAND} --key-file=${SKYDNS_TLS_KEY}"
+fi
+
+if ! ${ETCDCTL_COMMAND} ls /skydns > /dev/null 2>&1
+then
+  ${ETCDCTL_COMMAND} mkdir /skydns
+fi

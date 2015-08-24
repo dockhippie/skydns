@@ -1,13 +1,17 @@
 # Skydns
 
+[![](https://badge.imagelayers.io/webhippie/skydns:latest.svg)](https://imagelayers.io/?images=webhippie/skydns:latest 'Get your own badge on imagelayers.io')
+
 These are docker images for [SkyDNS](https://github.com/skynetservices/skydns) running on an
 [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
 
 
 ## Usage
 
-```
-docker run -ti --name skydns webhippie/skydns:latest
+```bash
+docker run -ti \
+  --name skydns \
+  webhippie/skydns:latest
 ```
 
 
@@ -37,6 +41,20 @@ ENV SKYDNS_SCACHE 10000
 ENV SKYDNS_TLS_KEY # As string or filename
 ENV SKYDNS_TLS_PEM # As string or filename
 ENV SKYDNS_VERBOSE false
+```
+
+
+## Inherited environment variables
+
+```bash
+ENV LOGSTASH_ENABLED false
+ENV LOGSTASH_HOST logstash
+ENV LOGSTASH_PORT 5043
+ENV LOGSTASH_CA /etc/ssl/logstash/certs/ca.pem # As string or filename
+ENV LOGSTASH_CERT /etc/ssl/logstash/certs/cert.pem # As string or filename
+ENV LOGSTASH_KEY /etc/ssl/logstash/private/cert.pem # As string or filename
+ENV LOGSTASH_TIMEOUT 15
+ENV LOGSTASH_OPTS
 ```
 
 

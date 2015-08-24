@@ -19,4 +19,4 @@ ADD rootfs /
 EXPOSE 53 53/udp
 
 WORKDIR /root
-CMD ["/usr/bin/s6-svscan","/etc/s6"]
+CMD ["/usr/bin/s6-svscan", "/etc/s6"]

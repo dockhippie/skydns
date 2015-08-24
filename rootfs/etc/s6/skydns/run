@@ -74,35 +74,17 @@ fi
 
 if [ -n "${SKYDNS_CA_CERT}" ]
 then
-  if [ -f "${SKYDNS_CA_CERT}" ]
-  then
-    STARTCMD="${STARTCMD} -ca-cert=${SKYDNS_CA_CERT}"
-  else
-    echo -e "${SKYDNS_CA_CERT}" >| /tmp/ca.crt
-    STARTCMD="${STARTCMD} -ca-cert=/tmp/ca.crt"
-  fi
+  STARTCMD="${STARTCMD} -ca-cert=${SKYDNS_CA_CERT}"
 fi
 
 if [ -n "${SKYDNS_TLS_PEM}" ]
 then
-  if [ -f "${SKYDNS_TLS_PEM}" ]
-  then
-    STARTCMD="${STARTCMD} -tls-pem=${SKYDNS_TLS_PEM}"
-  else
-    echo -e "${SKYDNS_TLS_PEM}" >| /tmp/etcd.crt
-    STARTCMD="${STARTCMD} -tls-pem=/tmp/etcd.crt"
-  fi
+  STARTCMD="${STARTCMD} -tls-pem=${SKYDNS_TLS_PEM}"
 fi
 
 if [ -n "${SKYDNS_TLS_KEY}" ]
 then
-  if [ -f "${SKYDNS_TLS_KEY}" ]
-  then
-    STARTCMD="${STARTCMD} -tls-key=${SKYDNS_TLS_KEY}"
-  else
-    echo -e "${SKYDNS_TLS_KEY}" >| /tmp/etcd.key
-    STARTCMD="${STARTCMD} -tls-key=/tmp/etcd.key"
-  fi
+  STARTCMD="${STARTCMD} -tls-key=${SKYDNS_TLS_KEY}"
 fi
 
 exec ${STARTCMD}
