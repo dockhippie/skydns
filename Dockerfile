@@ -7,7 +7,11 @@ ENV SKYDNS_BRANCH master
 
 ENV GOPATH /usr
 
-RUN apk add --update build-base git go && \
+RUN apk update && \
+  apk add \
+    build-base \
+    git \
+    go && \
   git clone -b ${SKYDNS_BRANCH} ${SKYDNS_REPO} ${GOPATH}/src/${SKYDNS_PATH} && \
   go get ${SKYDNS_PATH}/... && \
   go install ${SKYDNS_PATH} && \
