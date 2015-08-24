@@ -11,11 +11,12 @@ RUN apk update && \
   apk add \
     build-base \
     git \
+    mercurial \
     go && \
   git clone -b ${SKYDNS_BRANCH} ${SKYDNS_REPO} ${GOPATH}/src/${SKYDNS_PATH} && \
   go get ${SKYDNS_PATH}/... && \
   go install ${SKYDNS_PATH} && \
-  apk del build-base git go && \
+  apk del build-base git mercurial go && \
   rm -rf /var/cache/apk/* && \
   rm -r /usr/src/*
 
