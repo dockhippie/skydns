@@ -6,7 +6,7 @@ declare -x SKYDNS_TLS_PEM
 declare -x SKYDNS_TLS_KEY
 declare -x ETCDCTL_COMMAND
 
-if [ -n "${SKYDNS_MACHINES}" ]
+if [ -z "${SKYDNS_MACHINES}" ]
 then
   SKYDNS_MACHINES="http://etcd:2379"
 fi
