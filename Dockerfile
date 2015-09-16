@@ -14,11 +14,13 @@ RUN apk update && \
     mercurial \
     go && \
   git clone -b ${SKYDNS_BRANCH} ${SKYDNS_REPO} ${GOPATH}/src/${SKYDNS_PATH} && \
-  go get ${SKYDNS_PATH}/... && \
+  go get -d ${SKYDNS_PATH}/... && \
   go install ${SKYDNS_PATH} && \
   apk del build-base git mercurial go && \
   rm -rf /var/cache/apk/* && \
-  rm -r /usr/src/*
+  rm -r \
+    /usr/src/* \
+    /usr/pkg/*
 
 ADD rootfs /
 EXPOSE 53 53/udp
