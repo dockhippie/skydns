@@ -12,7 +12,7 @@ RUN apk update && \
     build-base \
     git \
     mercurial \
-    go && \
+    go@community && \
   git clone -b ${SKYDNS_BRANCH} ${SKYDNS_REPO} ${GOPATH}/src/${SKYDNS_PATH} && \
   go get -d ${SKYDNS_PATH}/... && \
   go install ${SKYDNS_PATH} && \
