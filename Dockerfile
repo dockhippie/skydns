@@ -5,7 +5,7 @@ ENV SKYDNS_PATH github.com/skynetservices/skydns
 ENV SKYDNS_REPO https://${SKYDNS_PATH}.git
 ENV SKYDNS_BRANCH master
 
-ENV GOPATH /usr:/usr/src/${SKYDNS_PATH}/Godeps/_workspace
+ENV GOPATH /usr
 
 RUN apk update && \
   apk add \
@@ -20,8 +20,7 @@ RUN apk update && \
   rm -rf /var/cache/apk/* && \
   rm -r \
     /usr/src/* \
-    /usr/pkg/* \
-    /usr/bin/godep
+    /usr/pkg/*
 
 ADD rootfs /
 EXPOSE 53 53/udp
