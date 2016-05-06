@@ -10,7 +10,7 @@ ENV GOPATH /usr
 RUN apk update && \
   apk add \
     build-base \
-    go@community \
+    go \
     git \
     mercurial && \
   git clone -b ${SKYDNS_BRANCH} ${SKYDNS_REPO} /usr/src/${SKYDNS_PATH} && \
