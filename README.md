@@ -1,25 +1,23 @@
 # Skydns
 
-[![](https://badge.imagelayers.io/webhippie/skydns:latest.svg)](https://imagelayers.io/?images=webhippie/skydns:latest 'Get your own badge on imagelayers.io')
+[![](https://images.microbadger.com/badges/image/webhippie/skydns.svg)](https://microbadger.com/images/webhippie/skydns "Get your own image badge on microbadger.com")
 
-These are docker images for [SkyDNS](https://github.com/skynetservices/skydns) running on an
-[Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
-
-
-## Usage
-
-```bash
-docker run -ti \
-  --name skydns \
-  webhippie/skydns:latest
-```
+These are docker images for [SkyDNS](https://github.com/skynetservices/skydns) running on an [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
 
 
 ## Versions
 
-* [latest](https://github.com/dockhippie/skydns/tree/master)
-  available as ```webhippie/skydns:latest``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/skydns/)
+* [latest](https://github.com/dockhippie/skydns/tree/master) available as ```webhippie/skydns:latest``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/skydns/)
+
+
+## Volumes
+
+* None
+
+
+## Ports
+
+* 53
 
 
 ## Available environment variables
@@ -47,14 +45,7 @@ ENV SKYDNS_VERBOSE false
 ## Inherited environment variables
 
 ```bash
-ENV LOGSTASH_ENABLED false
-ENV LOGSTASH_HOST logstash
-ENV LOGSTASH_PORT 5043
-ENV LOGSTASH_CA /etc/ssl/logstash/certs/ca.pem # As string or filename
-ENV LOGSTASH_CERT /etc/ssl/logstash/certs/cert.pem # As string or filename
-ENV LOGSTASH_KEY /etc/ssl/logstash/private/cert.pem # As string or filename
-ENV LOGSTASH_TIMEOUT 15
-ENV LOGSTASH_OPTS
+ENV CRON_ENABLED false
 ```
 
 
@@ -76,5 +67,5 @@ MIT
 ## Copyright
 
 ```
-Copyright (c) 2015 Thomas Boerger <http://www.webhippie.de>
+Copyright (c) 2015-2017 Thomas Boerger <http://www.webhippie.de>
 ```
